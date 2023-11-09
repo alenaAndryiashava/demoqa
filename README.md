@@ -6,6 +6,7 @@ is a platform designed for software testing and learning purposes. It offers a r
 
 Tools: Selenium, TestNG, Playwright, Junit.
 
+
 The project is based on the Page Object Model (POM).
 
 
