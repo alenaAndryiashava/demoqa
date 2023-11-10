@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class PageBase {
-    public WebDriver driver;
+    protected WebDriver driver;
 
     public PageBase(WebDriver driver) {
         this.driver = driver;
@@ -31,7 +31,6 @@ public class PageBase {
     }
 
     public void clickWithJSExecutor(WebElement element, int x, int y) {
-
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(" + x + "," + y + ")");
         wait(500);
@@ -99,5 +98,4 @@ public class PageBase {
             return 1;
         }
     }
-
 }
