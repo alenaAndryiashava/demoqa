@@ -9,6 +9,9 @@ import pages.SideMenu;
 import selenium_tests.TestBase;
 
 public class AlertsTest extends TestBase {
+    private final String text = faker.lorem().sentence(3);
+    private final String expectedText = "You entered " + text;
+
     @BeforeMethod
     public void preconditions() {
         new HomePage(driver).openAlertsFrameWindowsPage();
@@ -39,6 +42,24 @@ public class AlertsTest extends TestBase {
         String name = "Alena";
         Assert.assertTrue(new AlertsPage(driver)
                 .enterTextToPrompt(name)
-                .getPromptResult().contains(name));
+                .getResultText().contains(name));
+    }
+
+    @Test
+    public void acceptAndTextAlertTest() {
+        AlertsPage alertPage = new AlertsPage(driver);
+        alertPage.clickToTimerAlertButton();
+        String actualAlertText = alertPage.waitAlertAndClickToOk();
+        String expectedAlertText = "This alert appeared after 5 seconds";
+        Assert.assertEquals(actualAlertText, expectedAlertText);
+    }
+
+    @Test
+    public void getResultText() {
+        AlertsPage alertPage = new AlertsPage(driver);
+        alertPage.clickToPromtButton();
+        alertPage.fillAlertInput(text);
+        String actualText = alertPage.getResultText();
+        Assert.assertEquals(actualText, expectedText);
     }
 }

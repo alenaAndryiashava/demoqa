@@ -14,38 +14,34 @@ public class AlertsPage extends PageBase {
     public AlertsPage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(id = "alertButton")
-    WebElement alertButton;
-    @FindBy(id = "timerAlertButton")
-    WebElement timerAlertButton;
-    @FindBy(id = "confirmButton")
-    WebElement confirmButton;
-    @FindBy(id = "confirmResult")
-    WebElement confirmText;
-    @FindBy(id = "promtButton")
-    WebElement promtButton;
-    @FindBy(id = "promptResult")
-    WebElement promptResult;
 
-    public AlertsPage clickOnSimpleAlert() {
+    @FindBy(id = "alertButton")
+    private WebElement alertButton;
+    @FindBy(xpath = "//button[@id='timerAlertButton']")
+    private WebElement timerAlertButton;
+    @FindBy(id = "confirmButton")
+    private WebElement confirmButton;
+    @FindBy(id = "confirmResult")
+    private WebElement confirmText;
+    @FindBy(xpath = "//button[@id='promtButton']")
+    private WebElement promtButton;
+    @FindBy(xpath = "//span[@id='promptResult']")
+    private WebElement promptResult;
+
+    public void clickOnSimpleAlert() {
         click(alertButton);
         wait(1000);
         driver.switchTo().alert().accept();
-        return this;
     }
 
-    public AlertsPage clickOnSimpleAlertWithTimer() {
+    public void clickOnSimpleAlertWithTimer() {
         click(timerAlertButton);
-
-        // wait(5500);
-        //driver.switchTo().alert().accept();
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Alert myAlert = wait.until(ExpectedConditions.alertIsPresent());
         System.out.println(myAlert.getText());
         myAlert.accept();
-        return this;
     }
+
     public String getConfirmText() {
         return confirmText.getText();
     }
@@ -61,13 +57,36 @@ public class AlertsPage extends PageBase {
         }
         return this;
     }
+
+    public void clickToPromtButton() {
+        promtButton.click();
+    }
+
     public AlertsPage enterTextToPrompt(String name) {
         clickWithJSExecutor(promtButton, 0, 200);
         driver.switchTo().alert().sendKeys(name);
         driver.switchTo().alert().accept();
         return this;
     }
-    public String getPromptResult() {
+
+    public void clickToTimerAlertButton() {
+        timerAlertButton.click();
+    }
+
+    public String waitAlertAndClickToOk() {
+        new WebDriverWait(driver, Duration.ofSeconds(6)).until(ExpectedConditions.alertIsPresent());
+        String alertText = driver.switchTo().alert().getText();
+        driver.switchTo().alert().accept();
+        return alertText;
+    }
+
+    public void fillAlertInput(String text) {
+        new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().sendKeys(text);
+        driver.switchTo().alert().accept();
+    }
+
+    public String getResultText() {
         return promptResult.getText();
     }
 }
