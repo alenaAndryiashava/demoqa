@@ -1,5 +1,6 @@
 package selenium_tests.Elements;
 
+import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,6 +14,11 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
 public class TextBoxTest extends TestBase {
+    Faker faker = new Faker();
+    String name = faker.name().firstName();
+    String email = faker.internet().emailAddress();
+    String currentAddress = faker.address().fullAddress();
+    String permanentAddress = faker.address().fullAddress();
     // Pre-conditions: 1. Open Home Page 2. Open Elements 3. Open TextBox
     @BeforeMethod
     public void preconditions() {
@@ -35,5 +41,20 @@ public class TextBoxTest extends TestBase {
         Assert.assertTrue(ourPage.checkSubmittedData().contains(TextBoxData.ADDRESS));
         Assert.assertTrue(ourPage.checkSubmittedData().contains(TextBoxData.EMAIL));
         //Assert.assertEquals(ourPage.getPermanentAddress(), TextBoxData.ADDRESS);
+    }
+    @Test
+    public void boxTest() {
+        TextBoxPage textBoxPage = new TextBoxPage(driver);
+        textBoxPage.fillTextBox(name,email, currentAddress, permanentAddress);
+        textBoxPage.waitText();
+
+//        Assert.assertEquals(textBox.getName(), "Name:" + name);
+
+        Assert.assertEquals(textBoxPage.getTextFromInfoField("name"), "Name:" + name);
+        Assert.assertEquals(textBoxPage.getTextFromInfoField("email"), "Email:" + email);
+        Assert.assertEquals(textBoxPage.getTextFromInfoField("currentAddress"),
+                "Current Address :" + currentAddress);
+        Assert.assertEquals(textBoxPage.getTextFromInfoField("permanentAddress"),
+                "Permananet Address :" + permanentAddress);
     }
 }
