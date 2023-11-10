@@ -3,18 +3,8 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.AlertsFrameWindowsPages.AlertsPage;
 import pages.AlertsFrameWindowsPages.BrowserWindowsPage;
-import pages.AlertsFrameWindowsPages.FramesPage;
-import pages.AlertsFrameWindowsPages.NestedFramesPage;
-import pages.BookStore.BookStorePage;
-import pages.BookStore.LoginPage;
-import pages.BookStore.ProfilePage;
-import pages.Elements.*;
-import pages.Forms.PracticeFormPage;
-import pages.Interaction.DroppablePage;
-import pages.WidgetsPage.MenuPage;
-import pages.WidgetsPage.SelectMenuPage;
+
 
 public class SideMenu extends PageBase {
     public SideMenu(WebDriver driver) {
@@ -55,29 +45,25 @@ public class SideMenu extends PageBase {
     private WebElement radioButtonLink;
     @FindBy(xpath = "//span[.='Date Picker']")
     private WebElement datePickerLink;
+    @FindBy(xpath = "//span[.='Progress Bar']")
+    private WebElement progressBarLink;
     @FindBy(xpath = "//span[.='Practice Form']")
-    WebElement practiceFormLink;
+    private WebElement practiceFormLink;
 
     public void openLoginPage() {
         clickWithJSExecutor(loginPageLink, 0, 200);
-        wait(500);
-        new LoginPage(driver);
     }
 
     public void openAlertsPage() {
         clickWithJSExecutor(alertsPageLink, 0, 200);
-        new AlertsPage(driver);
     }
 
     public void openProfilePage() {
         clickWithJSExecutor(profilePageLink, 0, 300);
-        new ProfilePage(driver);
     }
 
     public void openBookStorePage() {
-        wait(1000);
         clickWithJSExecutor(bookStorePageLink, 0, 500);
-        new BookStorePage(driver);
     }
 
     public BrowserWindowsPage openBrowserWindowsPage() {
@@ -87,68 +73,56 @@ public class SideMenu extends PageBase {
 
     public void openFramesPage() {
         clickWithJSExecutor(framesPage, 0, 250);
-        new FramesPage(driver);
     }
 
     public void openNestedFramesPage() {
         clickWithJSExecutor(nestedFramesPage, 0, 250);
-        new NestedFramesPage(driver);
     }
 
     public void openSelectMenu() {
         clickWithJSExecutor(selectMenuPageLink, 0, 400);
-        wait(1000);
-        new SelectMenuPage(driver);
     }
 
     public void openTextBox() {
-        click(textBoxPageLink);
-        new TextBoxPage(driver);
+        textBoxPageLink.click();
     }
 
     public void openButtons() {
-        clickWithJSExecutor(buttonsPageLink, 0, 200);
-        wait(1000);
-        new ButtonsPage(driver);
+        buttonsPageLink.click();
     }
 
     public void openBrokenLinksImages() {
         clickWithJSExecutor(brokenLinksImagesLink, 0, 250);
-        new BrokenLinksImagesPage(driver);
     }
 
     public void openUploadAndDownloadPage() {
         clickWithJSExecutor(uploadAndDownloadPageLink, 0, 300);
-        new UploadAndDownloadPage(driver);
     }
 
     public void openDynamicPropertiesPage() {
         clickWithJSExecutor(dynamicPropertiesLink, 0, 300);
-        new DynamicPropertiesPage(driver);
     }
 
-    public DroppablePage openDroppablePage() {
+    public void openDroppablePage() {
         clickWithJSExecutor(droppableLink, 0, 350);
-        return new DroppablePage(driver);
     }
 
     public void openMenu() {
         clickWithJSExecutor(menuPageLink, 0, 350);
-        new MenuPage(driver);
     }
 
     public void openDatePicker() {
         clickWithJSExecutor(datePickerLink, 0, 350);
-        new MenuPage(driver);
+    }
+    public void openProgressBarPage() {
+        progressBarLink.click();
     }
 
     public void openRadioButtonPage() {
-        clickWithJSExecutor(radioButtonLink, 0, 350);
-        new RadioButtonPage(driver);
+        radioButtonLink.click();
     }
 
-    public PracticeFormPage openPracticeFormPage() {
+    public void openPracticeFormPage() {
         clickWithJSExecutor(practiceFormLink, 0, 350);
-        return new PracticeFormPage(driver);
     }
 }
