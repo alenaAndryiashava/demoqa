@@ -17,6 +17,7 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp() {
+        //driver = new FirefoxDriver();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
