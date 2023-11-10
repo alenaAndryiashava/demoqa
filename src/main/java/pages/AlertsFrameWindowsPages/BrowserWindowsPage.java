@@ -7,21 +7,25 @@ import pages.PageBase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class BrowserWindowsPage extends PageBase {
     public BrowserWindowsPage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(id = "tabButton")
-    WebElement newTabButton;
-    @FindBy(id = "windowButton")
-    WebElement newWindowButton;
-    @FindBy(id = "messageWindowButton")
-    WebElement newMessageWindowButton;
-    @FindBy(id = "sampleHeading")
-    WebElement newPageHeading;
-    @FindBy(xpath = "/html/body")
-    WebElement newMessageText;
+
+    @FindBy(xpath = "//button[@id='tabButton']")
+    private WebElement newTabButton;
+    @FindBy(xpath = "//div[@class='main-header']")
+    private WebElement mainHeader;
+    @FindBy(xpath = "//button[@id='windowButton']")
+    private WebElement newWindowButton;
+    @FindBy(xpath = "//button[@id='messageWindowButton']")
+    private WebElement newMessageWindowButton;
+    @FindBy(xpath = "//h1[@id='sampleHeading']")
+    WebElement newTabHeader;
+    @FindBy(xpath = "//body")
+    private WebElement newMessageText;
 
     public BrowserWindowsPage openNewTab() {
         click(newTabButton);
@@ -32,8 +36,11 @@ public class BrowserWindowsPage extends PageBase {
         return this;
     }
 
-    public String getNewPageHeading() {
-        return newPageHeading.getText();
+    public String getNewTabHeader() {
+        return newTabHeader.getText();
+    }
+    public boolean isNewTabHeaderVisible() {
+        return newTabHeader.isDisplayed();
     }
 
     public BrowserWindowsPage openNewWindow() {
@@ -65,5 +72,39 @@ public class BrowserWindowsPage extends PageBase {
     public BrowserWindowsPage closeWindow() {
         driver.close();
         return this;
+    }
+
+    public void clickToNewTabButton() {
+        newTabButton.click();
+    }
+
+    public void clickToNewWindowButton() {
+        newWindowButton.click();
+    }
+
+    public void clickToNewMessageWindowButton() {
+        newMessageWindowButton.click();
+    }
+
+    public boolean shouldBeVisible() {
+        return mainHeader.isDisplayed();
+    }
+    public String getOriginalWindow() {
+        return driver.getWindowHandle();
+    }
+
+    public void switchToNewTab(String originalWindow) {
+        Set<String> handles = driver.getWindowHandles();
+        for(String handle : handles) {
+            if(!originalWindow.equals(handle)) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
+    }
+
+    public void closeAndSwitchToOriginalWindow(String originalWindow) {
+        driver.close();
+        driver.switchTo().window(originalWindow);
     }
 }
