@@ -21,36 +21,40 @@ public class SideMenu extends PageBase {
         super(driver);
     }
 
-    @FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div[1]/div/div/div[6]/div/ul/li[1]")
-    WebElement loginPageLink;
-    @FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div[1]/div/div/div[3]/div/ul/li[2]")
-    WebElement alertsPageLink;
-    @FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div[1]/div/div/div[6]/div/ul/li[3]")
-    WebElement profilePageLink;
+    @FindBy(xpath = "//span[.='Login']")
+    private WebElement loginPageLink;
+    @FindBy(xpath = "//span[.='Alerts']")
+    private WebElement alertsPageLink;
+    @FindBy(xpath = "//span[.='Profile']")
+    private WebElement profilePageLink;
     @FindBy(xpath = "//span[.='Book Store']")
-    WebElement bookStorePageLink;
+    private WebElement bookStorePageLink;
     @FindBy(xpath = "//span[.='Browser Windows']")
-    WebElement browserWindowsLink;
+    private WebElement browserWindowsLink;
     @FindBy(xpath = "//span[.='Frames']")
-    WebElement framesPage;
+    private WebElement framesPage;
     @FindBy(xpath = "//span[.='Nested Frames']")
-    WebElement nestedFramesPage;
+    private WebElement nestedFramesPage;
     @FindBy(xpath = "//span[.='Select Menu']")
-    WebElement selectMenuPageLink;
+    private WebElement selectMenuPageLink;
     @FindBy(xpath = "//span[.='Text Box']")
-    WebElement textBoxPageLink;
+    private WebElement textBoxPageLink;
     @FindBy(xpath = "//span[.='Buttons']")
-    WebElement buttonsPageLink;
+    private WebElement buttonsPageLink;
     @FindBy(xpath = "//span[.='Upload and Download']")
-    WebElement uploadAndDownloadPageLink;
+    private WebElement uploadAndDownloadPageLink;
     @FindBy(xpath = "//span[.='Broken Links - Images']")
-    WebElement brokenLinksImagesLink;
+    private WebElement brokenLinksImagesLink;
+    @FindBy(xpath = "//span[.='Dynamic Properties']")
+    private WebElement dynamicPropertiesLink;
     @FindBy(xpath = "//span[.='Droppable']")
-    WebElement droppableLink;
+    private WebElement droppableLink;
     @FindBy(xpath = "//span[.='Menu']")
-    WebElement menuPageLink;
+    private WebElement menuPageLink;
     @FindBy(xpath = "//span[.='Radio Button']")
-    WebElement radioButtonLink;
+    private WebElement radioButtonLink;
+    @FindBy(xpath = "//span[.='Date Picker']")
+    private WebElement datePickerLink;
     @FindBy(xpath = "//span[.='Practice Form']")
     WebElement practiceFormLink;
 
@@ -108,14 +112,19 @@ public class SideMenu extends PageBase {
         new ButtonsPage(driver);
     }
 
+    public void openBrokenLinksImages() {
+        clickWithJSExecutor(brokenLinksImagesLink, 0, 250);
+        new BrokenLinksImagesPage(driver);
+    }
+
     public void openUploadAndDownloadPage() {
         clickWithJSExecutor(uploadAndDownloadPageLink, 0, 300);
         new UploadAndDownloadPage(driver);
     }
 
-    public void openBrokenLinksImages() {
-        clickWithJSExecutor(brokenLinksImagesLink, 0, 250);
-        new BrokenLinksImagesPage(driver);
+    public void openDynamicPropertiesPage() {
+        clickWithJSExecutor(dynamicPropertiesLink, 0, 300);
+        new DynamicPropertiesPage(driver);
     }
 
     public DroppablePage openDroppablePage() {
@@ -125,6 +134,11 @@ public class SideMenu extends PageBase {
 
     public void openMenu() {
         clickWithJSExecutor(menuPageLink, 0, 350);
+        new MenuPage(driver);
+    }
+
+    public void openDatePicker() {
+        clickWithJSExecutor(datePickerLink, 0, 350);
         new MenuPage(driver);
     }
 
