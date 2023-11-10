@@ -29,6 +29,8 @@ public class SideMenu extends PageBase {
     private WebElement selectMenuPageLink;
     @FindBy(xpath = "//span[.='Text Box']")
     private WebElement textBoxPageLink;
+    @FindBy(xpath = "//span[.='Web Tables']")
+    private WebElement webTablesLink;
     @FindBy(xpath = "//span[.='Buttons']")
     private WebElement buttonsPageLink;
     @FindBy(xpath = "//span[.='Upload and Download']")
@@ -87,6 +89,10 @@ public class SideMenu extends PageBase {
         textBoxPageLink.click();
     }
 
+    public void openWebTables() {
+        webTablesLink.click();
+    }
+
     public void openButtons() {
         buttonsPageLink.click();
     }
@@ -114,6 +120,7 @@ public class SideMenu extends PageBase {
     public void openDatePicker() {
         clickWithJSExecutor(datePickerLink, 0, 350);
     }
+
     public void openProgressBarPage() {
         progressBarLink.click();
     }
