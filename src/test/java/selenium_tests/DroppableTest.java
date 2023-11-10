@@ -10,7 +10,7 @@ import pages.SideMenu;
 public class DroppableTest extends TestBase {
     @BeforeMethod
     public void preconditions() {
-        new HomePage(driver).openIntercations();
+        new HomePage(driver).openInteractions();
         new SideMenu(driver).openDroppablePage();
     }
 
