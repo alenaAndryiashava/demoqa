@@ -1,5 +1,6 @@
 package selenium_tests;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,28 +9,22 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    public WebDriver driver;
-
+    protected WebDriver driver;
+    protected Faker faker = new Faker();
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
     @BeforeMethod
-    public void init() {
-        //driver = new ChromeDriver();
-//        driver = new FirefoxDriver();
+    public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
         driver.get("https://demoqa.com");
-
     }
 
-    @AfterMethod(enabled = true)
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
@@ -43,26 +38,4 @@ public class TestBase {
     }
 }
 
- /*
-    параметризации запуска браузера для указания папки Downloads не по умолчанию
 
-
-    @BeforeMethod
-public void init() {
-    HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-    chromePrefs.put("download.default_directory", "/users/user/documents");
-    ChromeOptions options = new ChromeOptions();
-    options.setExperimentalOption("prefs", chromePrefs);
-
-    driver = new ChromeDriver(options);
-
-    driver.manage().window().maximize();
-    driver.get("https://demoqa.com/");
-
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-}
-     */
-//ChromeOptions options = new ChromeOptions();
-//options.addArguments("--headless");
-
-//driver = new ChromeDriver(options);
