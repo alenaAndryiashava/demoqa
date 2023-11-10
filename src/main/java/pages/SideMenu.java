@@ -14,6 +14,7 @@ import pages.Elements.*;
 import pages.Forms.PracticeFormPage;
 import pages.Interaction.DroppablePage;
 import pages.WidgetsPage.MenuPage;
+import pages.WidgetsPage.SelectMenuPage;
 
 public class SideMenu extends PageBase {
     public SideMenu(WebDriver driver) {
@@ -22,133 +23,115 @@ public class SideMenu extends PageBase {
 
     @FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div[1]/div/div/div[6]/div/ul/li[1]")
     WebElement loginPageLink;
-
-    public LoginPage openLoginPage() {
-        clickWithJSExecutor(loginPageLink, 0, 200);
-        wait(500);
-        return new LoginPage(driver);
-    }
-
     @FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div[1]/div/div/div[3]/div/ul/li[2]")
     WebElement alertsPageLink;
-
-    public AlertsPage openAlertsPage() {
-        clickWithJSExecutor(alertsPageLink, 0, 200);
-        return new AlertsPage(driver);
-    }
-
     @FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div[1]/div/div/div[6]/div/ul/li[3]")
     WebElement profilePageLink;
-
-    public ProfilePage openProfilePage() {
-        clickWithJSExecutor(profilePageLink, 0, 300);
-        return new ProfilePage(driver);
-    }
-
     @FindBy(xpath = "//span[.='Book Store']")
     WebElement bookStorePageLink;
-
-    public BookStorePage openBookStorePage() {
-        wait(1000);
-        clickWithJSExecutor(bookStorePageLink, 0, 500);
-        return new BookStorePage(driver);
-    }
-
     @FindBy(xpath = "//span[.='Browser Windows']")
     WebElement browserWindowsLink;
+    @FindBy(xpath = "//span[.='Frames']")
+    WebElement framesPage;
+    @FindBy(xpath = "//span[.='Nested Frames']")
+    WebElement nestedFramesPage;
+    @FindBy(xpath = "//span[.='Select Menu']")
+    WebElement selectMenuPageLink;
+    @FindBy(xpath = "//span[.='Text Box']")
+    WebElement textBoxPageLink;
+    @FindBy(xpath = "//span[.='Buttons']")
+    WebElement buttonsPageLink;
+    @FindBy(xpath = "//span[.='Upload and Download']")
+    WebElement uploadAndDownloadPageLink;
+    @FindBy(xpath = "//span[.='Broken Links - Images']")
+    WebElement brokenLinksImagesLink;
+    @FindBy(xpath = "//span[.='Droppable']")
+    WebElement droppableLink;
+    @FindBy(xpath = "//span[.='Menu']")
+    WebElement menuPageLink;
+    @FindBy(xpath = "//span[.='Radio Button']")
+    WebElement radioButtonLink;
+    @FindBy(xpath = "//span[.='Practice Form']")
+    WebElement practiceFormLink;
+
+    public void openLoginPage() {
+        clickWithJSExecutor(loginPageLink, 0, 200);
+        wait(500);
+        new LoginPage(driver);
+    }
+
+    public void openAlertsPage() {
+        clickWithJSExecutor(alertsPageLink, 0, 200);
+        new AlertsPage(driver);
+    }
+
+    public void openProfilePage() {
+        clickWithJSExecutor(profilePageLink, 0, 300);
+        new ProfilePage(driver);
+    }
+
+    public void openBookStorePage() {
+        wait(1000);
+        clickWithJSExecutor(bookStorePageLink, 0, 500);
+        new BookStorePage(driver);
+    }
 
     public BrowserWindowsPage openBrowserWindowsPage() {
         click(browserWindowsLink);
         return new BrowserWindowsPage(driver);
     }
 
-    @FindBy(xpath = "//span[.='Frames']")
-    WebElement framesPage;
-
-    public FramesPage openFramesPage() {
+    public void openFramesPage() {
         clickWithJSExecutor(framesPage, 0, 250);
-        return new FramesPage(driver);
+        new FramesPage(driver);
     }
 
-    @FindBy(xpath = "//span[.='Nested Frames']")
-    WebElement nestedFramesPage;
-
-    public NestedFramesPage openNestedFramesPage() {
+    public void openNestedFramesPage() {
         clickWithJSExecutor(nestedFramesPage, 0, 250);
-        return new NestedFramesPage(driver);
+        new NestedFramesPage(driver);
     }
 
-    @FindBy(xpath = "//span[.='Select Menu']")
-    WebElement selectMenuPageLink;
-
-    /*public SelectMenuPage openSelectMenu() {
+    public void openSelectMenu() {
         clickWithJSExecutor(selectMenuPageLink, 0, 400);
         wait(1000);
-        return new SelectMenuPage(driver);
+        new SelectMenuPage(driver);
     }
 
-     */
-
-    @FindBy(xpath = "//span[.='Text Box']")
-    WebElement textBoxPageLink;
-
-    public TextBoxPage openTextBox() {
+    public void openTextBox() {
         click(textBoxPageLink);
-        return new TextBoxPage(driver);
+        new TextBoxPage(driver);
     }
 
-    @FindBy(xpath = "//span[.='Buttons']")
-    WebElement buttonsPageLink;
-
-    public ButtonsPage openButtons() {
+    public void openButtons() {
         clickWithJSExecutor(buttonsPageLink, 0, 200);
         wait(1000);
-        return new ButtonsPage(driver);
+        new ButtonsPage(driver);
     }
 
-
-    @FindBy(xpath = "//span[.='Upload and Download']")
-    WebElement uploadAndDownloadPageLink;
-
-    public UploadAndDownloadPage openUploadAndDownloadPage() {
+    public void openUploadAndDownloadPage() {
         clickWithJSExecutor(uploadAndDownloadPageLink, 0, 300);
-        return new UploadAndDownloadPage(driver);
+        new UploadAndDownloadPage(driver);
     }
 
-    @FindBy(xpath = "//span[.='Broken Links - Images']")
-    WebElement brokenLinksImagesLink;
-
-    public BrokenLinksImagesPage openBrokenLinksImages() {
+    public void openBrokenLinksImages() {
         clickWithJSExecutor(brokenLinksImagesLink, 0, 250);
-        return new BrokenLinksImagesPage(driver);
+        new BrokenLinksImagesPage(driver);
     }
-
-    @FindBy(xpath = "//span[.='Droppable']")
-    WebElement droppableLink;
 
     public DroppablePage openDroppablePage() {
         clickWithJSExecutor(droppableLink, 0, 350);
         return new DroppablePage(driver);
     }
 
-    @FindBy(xpath = "//span[.='Menu']")
-    WebElement menuPageLink;
-
-    public MenuPage openMenu() {
+    public void openMenu() {
         clickWithJSExecutor(menuPageLink, 0, 350);
-        return new MenuPage(driver);
+        new MenuPage(driver);
     }
 
-    @FindBy(xpath = "//span[.='Radio Button']")
-    WebElement radioButtonLink;
-
-    public RadioButtonPage openRadioButtonPage() {
+    public void openRadioButtonPage() {
         clickWithJSExecutor(radioButtonLink, 0, 350);
-        return new RadioButtonPage(driver);
+        new RadioButtonPage(driver);
     }
-
-    @FindBy(xpath = "//span[.='Practice Form']")
-    WebElement practiceFormLink;
 
     public PracticeFormPage openPracticeFormPage() {
         clickWithJSExecutor(practiceFormLink, 0, 350);

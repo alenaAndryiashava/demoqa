@@ -13,14 +13,12 @@ public class DroppablePage extends PageBase {
 
     @FindBy(id = "draggable")
     WebElement draggable;
-
     @FindBy(id = "droppable")
     WebElement droppable;
 
     public DroppablePage testDroppableHere() {
         Actions actions = new Actions(driver);
-        wait(1000);
-
+        //wait(1000);
         actions.dragAndDrop(draggable, droppable).perform();
         return this;
     }
@@ -32,20 +30,17 @@ public class DroppablePage extends PageBase {
     public DroppablePage testDroppableByOffset() {
         Actions actions = new Actions(driver);
 
-        int xOffSetDraggable = draggable.getLocation().getX();//перетаскиваемый
+        int xOffSetDraggable = draggable.getLocation().getX();
         int yOffSetDraggable = draggable.getLocation().getY();
 
-        int xOffSetDroppable = droppable.getLocation().getX();//сбрасываемый
+        int xOffSetDroppable = droppable.getLocation().getX();
         int yOffSetDroppable = droppable.getLocation().getY();
 
         int xOffSet = (xOffSetDroppable - xOffSetDraggable) + 30;
         int yOffSet = (yOffSetDroppable - yOffSetDraggable) + 30;
 
         actions.dragAndDropBy(draggable, xOffSet, yOffSet).perform();
-
-
-        wait(1000);
-
+        //wait(1000);
         return this;
     }
 }
